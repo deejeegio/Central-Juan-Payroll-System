@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SQLite;
+using MySql.Data.MySqlClient;
 
 
 namespace Central_Juan_Payroll_System
 {
     public partial class UC_EmployeeList : UserControl
     {
+        // MySQL connection string
+        private MySqlConnection mysql_conn;
 
         private SQLiteConnection sqlite_conn;
 
@@ -28,11 +30,11 @@ namespace Central_Juan_Payroll_System
         private void SetupDataGridView()
         {
             // Set column headers
-            dgvEmployeeList.Columns["id"].HeaderText = "ID";
-            dgvEmployeeList.Columns["employee_code"].HeaderText = "Employee Code";
-            dgvEmployeeList.Columns["firstname"].HeaderText = "First Name";
-            dgvEmployeeList.Columns["middlename"].HeaderText = "Middle Name";
-            dgvEmployeeList.Columns["lastname"].HeaderText = "Last Name";
+            dgvEmployeeList.Columns["employee_id"].HeaderText = "ID";
+            dgvEmployeeList.Columns["first_name"].HeaderText = "First Name";
+            dgvEmployeeList.Columns["middle_name"].HeaderText = "Middle Name";
+            dgvEmployeeList.Columns["last_name"].HeaderText = "Last Name";
+            dgvEmployeeList.Columns["email"].HeaderText = "Department ID";
             dgvEmployeeList.Columns["department_id"].HeaderText = "Department ID";
             dgvEmployeeList.Columns["position_id"].HeaderText = "Position ID";
             dgvEmployeeList.Columns["salary"].HeaderText = "Salary";
@@ -40,33 +42,36 @@ namespace Central_Juan_Payroll_System
 
         private void InitializeDatabase()
         {
-            sqlite_conn = new SQLiteConnection("Data Source=C:\\sqlite\\cj.db");
-            sqlite_conn.Open();
+            // MySQL connection string - replace with your actual database details
+            string connectionString = "server=127.0.0.1;port=3306;user=root;password=1234;database=sys";
+            mysql_conn = new MySqlConnection(connectionString);
+            mysql_conn.Open();
 
             string createTableSql = @"
-                CREATE TABLE IF NOT EXISTS Employee (
-                    id INTEGER PRIMARY KEY,
+                CREATE TABLE IF NOT EXISTS employees (
+                    employee_id INT AUTO_INCREMENT PRIMARY KEY,
                     employee_code VARCHAR(100),
-                    firstname VARCHAR(250),
-                    middlename VARCHAR(250),
-                    lastname VARCHAR(250),
-                    department_id INTEGER,
-                    position_id INTEGER,
-                    salary DOUBLE
+                    first_name VARCHAR(250),
+                    middle_name VARCHAR(250),
+                    last_name VARCHAR(250),
+                    department_id INT,
+                    position_id INT,
+                    FOREIGN KEY (department_id) REFERENCES Departments(department_id),
+                    FOREIGN KEY (position_id) REFERENCES Positions(position_id)
                 );";
 
-            SQLiteCommand createTableCmd = new SQLiteCommand(createTableSql, sqlite_conn);
+            MySqlCommand createTableCmd = new MySqlCommand(createTableSql, mysql_conn);
             createTableCmd.ExecuteNonQuery();
         }
 
         private void LoadEmployeeData()
         {
-            string query = "SELECT * FROM Employee";
-            SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, sqlite_conn);
+            string query = "SELECT * FROM employees";
+            MySqlDataAdapter adapter = new MySqlDataAdapter(query, mysql_conn);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
 
-            dgvEmployeeList.DataSource = dt;
+           dgvEmployeeList.DataSource = dt;
         }
 
         public void RefreshEmployeeList()

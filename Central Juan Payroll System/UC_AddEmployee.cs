@@ -16,7 +16,7 @@ namespace Central_Juan_Payroll_System
 
 
 
-        private string connectionString = "server=localhost;user=root;password=1234;database=central_juan_db";
+        private string connectionString = "server=127.0.0.1;port=3306;user=root;password=1234;database=cjis_db";
 
 
         public UC_AddEmployee()
@@ -32,14 +32,14 @@ namespace Central_Juan_Payroll_System
                 try
                 {
                     connection.Open();
-                    string query = "SELECT id, department_name FROM Department";
+                    string query = "SELECT department_id, department_name FROM departments";
                     MySqlCommand command = new MySqlCommand(query, connection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
                     departmentComboBox.DataSource = dt;
                     departmentComboBox.DisplayMember = "department_name";
-                    departmentComboBox.ValueMember = "id";
+                    departmentComboBox.ValueMember = "department_id";
                 }
                 catch (Exception ex)
                 {
@@ -50,6 +50,7 @@ namespace Central_Juan_Payroll_System
 
         private void btnEmployeeSave_Click(object sender, EventArgs e)
         {
+            string employeeCode = employeeCodeTextBox.Text;
             string firstName = firstNameTextBox.Text;
             string middleName = middleNameTextBox.Text;
             string lastName = lastNameTextBox.Text;
@@ -63,9 +64,10 @@ namespace Central_Juan_Payroll_System
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO Employees (first_name, middle_name, last_name, email, contact_no, birth_date, department_id) " +
-                                   "VALUES (@FirstName, @MiddleName, @LastName, @Email, @ContactNumber, @DateOfBirth, @DepartmentId)";
+                    string query = "INSERT INTO employees (employee_id, first_name, middle_name, last_name, email, contact_number, date_of_birth, department_id) " +
+                                   "VALUES (@EmployeeCode, @FirstName, @MiddleName, @LastName, @Email, @ContactNumber, @DateOfBirth, @DepartmentId)";
                     MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@EmployeeCode", employeeCode);
                     command.Parameters.AddWithValue("@FirstName", firstName);
                     command.Parameters.AddWithValue("@MiddleName", middleName);
                     command.Parameters.AddWithValue("@LastName", lastName);
@@ -93,15 +95,16 @@ namespace Central_Juan_Payroll_System
         }
 
         private void ClearFields()
-         {
+        {
+            employeeCodeTextBox.Text = string.Empty;
             firstNameTextBox.Text = string.Empty;
-                lastNameTextBox.Text = string.Empty;
-                middleNameTextBox.Text = string.Empty;
-                emailTxt.Text = string.Empty;
-                contactNo.Text = string.Empty;
-                birthDate.Value = DateTime.Today;
-                departmentComboBox.SelectedIndex = -1;
-         }
+            lastNameTextBox.Text = string.Empty;
+            middleNameTextBox.Text = string.Empty;
+            emailTxt.Text = string.Empty;
+            contactNo.Text = string.Empty;
+            birthDate.Value = DateTime.Today;
+            departmentComboBox.SelectedIndex = -1;
+        }
 
     }
 }
