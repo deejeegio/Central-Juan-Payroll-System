@@ -16,7 +16,7 @@ namespace Central_Juan_Payroll_System
     {
 
         // Connection string for MySQL database
-        private string connectionString = "server=localhost;user=root;password=1234;database=central_juan_db";
+        private string connectionString = "server=10.0.254.222;user=username;password=1234;database=cjis_db";
 
         public add_EmDTR()
         {

@@ -17,8 +17,6 @@ namespace Central_Juan_Payroll_System
         // MySQL connection string
         private MySqlConnection mysql_conn;
 
-        private SQLiteConnection sqlite_conn;
-
         public UC_EmployeeList()
         {
             InitializeComponent();
@@ -37,13 +35,12 @@ namespace Central_Juan_Payroll_System
             dgvEmployeeList.Columns["email"].HeaderText = "Department ID";
             dgvEmployeeList.Columns["department_id"].HeaderText = "Department ID";
             dgvEmployeeList.Columns["position_id"].HeaderText = "Position ID";
-            dgvEmployeeList.Columns["salary"].HeaderText = "Salary";
         }
 
         private void InitializeDatabase()
         {
             // MySQL connection string - replace with your actual database details
-            string connectionString = "server=127.0.0.1;port=3306;user=root;password=1234;database=sys";
+            string connectionString = "server=10.0.254.222;port=3306;user=username;password=1234;database=cjis_db";
             mysql_conn = new MySqlConnection(connectionString);
             mysql_conn.Open();
 

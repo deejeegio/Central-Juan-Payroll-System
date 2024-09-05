@@ -16,8 +16,8 @@ namespace Central_Juan_Payroll_System
 
 
 
-        private string connectionString = "server=127.0.0.1;port=3306;user=root;password=1234;database=cjis_db";
-
+        private string connectionString = "server=10.0.254.222;port=3306;user=username;password=1234;database=cjis_db";
+            
 
         public UC_AddEmployee()
         {
