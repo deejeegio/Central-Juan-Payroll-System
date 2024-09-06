@@ -40,11 +40,11 @@
             button5 = new Button();
             label3 = new Label();
             panel3 = new Panel();
+            uC_Attendance1 = new UC_Attendance();
             uC_EmployeeList1 = new UC_EmployeeList();
             uC_Salary1 = new UC_Salary();
             uC_Settings1 = new UC_Settings();
             uC_Employee1 = new UC_AddEmployee();
-            uC_Attendance1 = new UC_Attendance();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -70,7 +70,7 @@
             btnAttendance.FlatAppearance.BorderSize = 2;
             btnAttendance.FlatAppearance.MouseOverBackColor = Color.Aqua;
             btnAttendance.FlatStyle = FlatStyle.Flat;
-            btnAttendance.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAttendance.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAttendance.ForeColor = Color.White;
             btnAttendance.Image = (Image)resources.GetObject("btnAttendance.Image");
             btnAttendance.ImageAlign = ContentAlignment.TopCenter;
@@ -88,7 +88,7 @@
             button3.FlatAppearance.BorderSize = 2;
             button3.FlatAppearance.MouseOverBackColor = Color.Aqua;
             button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
             button3.Image = (Image)resources.GetObject("button3.Image");
             button3.ImageAlign = ContentAlignment.TopCenter;
@@ -106,7 +106,7 @@
             button2.FlatAppearance.BorderSize = 2;
             button2.FlatAppearance.MouseOverBackColor = Color.Aqua;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             button2.ForeColor = Color.White;
             button2.Image = (Image)resources.GetObject("button2.Image");
             button2.ImageAlign = ContentAlignment.TopCenter;
@@ -124,7 +124,7 @@
             button1.FlatAppearance.BorderSize = 2;
             button1.FlatAppearance.MouseOverBackColor = Color.Aqua;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = Color.White;
             button1.Image = (Image)resources.GetObject("button1.Image");
             button1.ImageAlign = ContentAlignment.TopCenter;
@@ -162,7 +162,7 @@
             addEmployee.FlatAppearance.BorderSize = 2;
             addEmployee.FlatAppearance.MouseOverBackColor = Color.Aqua;
             addEmployee.FlatStyle = FlatStyle.Flat;
-            addEmployee.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addEmployee.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             addEmployee.ForeColor = Color.White;
             addEmployee.Image = Properties.Resources.add_employee__1_;
             addEmployee.ImageAlign = ContentAlignment.TopCenter;
@@ -180,7 +180,7 @@
             button5.FlatAppearance.BorderSize = 2;
             button5.FlatAppearance.MouseOverBackColor = Color.Aqua;
             button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button5.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             button5.ForeColor = Color.White;
             button5.Image = (Image)resources.GetObject("button5.Image");
             button5.ImageAlign = ContentAlignment.TopCenter;
@@ -196,7 +196,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.MediumTurquoise;
             label3.Location = new Point(568, 19);
             label3.Name = "label3";
@@ -215,6 +215,13 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1152, 552);
             panel3.TabIndex = 3;
+            // 
+            // uC_Attendance1
+            // 
+            uC_Attendance1.Location = new Point(0, 3);
+            uC_Attendance1.Name = "uC_Attendance1";
+            uC_Attendance1.Size = new Size(1152, 552);
+            uC_Attendance1.TabIndex = 4;
             // 
             // uC_EmployeeList1
             // 
@@ -240,35 +247,27 @@
             // 
             // uC_Employee1
             // 
-            uC_Employee1.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            uC_Employee1.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             uC_Employee1.Location = new Point(0, 1);
             uC_Employee1.Margin = new Padding(4);
             uC_Employee1.Name = "uC_Employee1";
             uC_Employee1.Size = new Size(1152, 552);
             uC_Employee1.TabIndex = 0;
             // 
-            // uC_Attendance1
-            // 
-            uC_Attendance1.Location = new Point(0, 3);
-            uC_Attendance1.Name = "uC_Attendance1";
-            uC_Attendance1.Size = new Size(1152, 552);
-            uC_Attendance1.TabIndex = 4;
-            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1366, 749);
+            ClientSize = new Size(1284, 749);
             Controls.Add(panel3);
             Controls.Add(label3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4);
             Name = "Dashboard";
             Text = "Dashboard";
-            WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);

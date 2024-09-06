@@ -33,8 +33,10 @@ namespace Central_Juan_Payroll_System
             dgvEmployeeList.Columns["middle_name"].HeaderText = "Middle Name";
             dgvEmployeeList.Columns["last_name"].HeaderText = "Last Name";
             dgvEmployeeList.Columns["email"].HeaderText = "Department ID";
+            dgvEmployeeList.Columns["contact_number"].HeaderText = "Contact #";
+            dgvEmployeeList.Columns["date_of_birth"].HeaderText = "DOB";
             dgvEmployeeList.Columns["department_id"].HeaderText = "Department ID";
-            dgvEmployeeList.Columns["position_id"].HeaderText = "Position ID";
+            dgvEmployeeList.Columns["position_title"].HeaderText = "Position ID";
         }
 
         private void InitializeDatabase()

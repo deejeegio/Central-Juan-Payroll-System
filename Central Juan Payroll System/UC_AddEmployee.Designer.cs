@@ -47,12 +47,14 @@
             contactNo = new TextBox();
             label8 = new Label();
             employeeCodeTextBox = new TextBox();
+            label9 = new Label();
+            positionBox = new TextBox();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(427, 143);
+            label1.Location = new Point(432, 132);
             label1.Name = "label1";
             label1.Size = new Size(83, 20);
             label1.TabIndex = 0;
@@ -60,14 +62,14 @@
             // 
             // firstNameTextBox
             // 
-            firstNameTextBox.Location = new Point(516, 140);
+            firstNameTextBox.Location = new Point(521, 129);
             firstNameTextBox.Name = "firstNameTextBox";
             firstNameTextBox.Size = new Size(215, 26);
             firstNameTextBox.TabIndex = 1;
             // 
             // middleNameTextBox
             // 
-            middleNameTextBox.Location = new Point(516, 190);
+            middleNameTextBox.Location = new Point(521, 179);
             middleNameTextBox.Name = "middleNameTextBox";
             middleNameTextBox.Size = new Size(215, 26);
             middleNameTextBox.TabIndex = 3;
@@ -75,7 +77,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(402, 193);
+            label2.Location = new Point(407, 182);
             label2.Name = "label2";
             label2.Size = new Size(108, 20);
             label2.TabIndex = 2;
@@ -83,7 +85,7 @@
             // 
             // lastNameTextBox
             // 
-            lastNameTextBox.Location = new Point(516, 235);
+            lastNameTextBox.Location = new Point(521, 224);
             lastNameTextBox.Name = "lastNameTextBox";
             lastNameTextBox.Size = new Size(215, 26);
             lastNameTextBox.TabIndex = 5;
@@ -91,7 +93,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(425, 241);
+            label3.Location = new Point(430, 230);
             label3.Name = "label3";
             label3.Size = new Size(85, 20);
             label3.TabIndex = 4;
@@ -100,7 +102,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(411, 282);
+            label4.Location = new Point(416, 271);
             label4.Name = "label4";
             label4.Size = new Size(101, 20);
             label4.TabIndex = 6;
@@ -108,7 +110,7 @@
             // 
             // emailTxt
             // 
-            emailTxt.Location = new Point(516, 366);
+            emailTxt.Location = new Point(521, 355);
             emailTxt.Name = "emailTxt";
             emailTxt.Size = new Size(215, 26);
             emailTxt.TabIndex = 11;
@@ -116,7 +118,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(460, 369);
+            label6.Location = new Point(465, 358);
             label6.Name = "label6";
             label6.Size = new Size(50, 20);
             label6.TabIndex = 10;
@@ -128,7 +130,7 @@
             btnEmployeeSave.FlatAppearance.BorderSize = 2;
             btnEmployeeSave.FlatAppearance.MouseOverBackColor = Color.Aqua;
             btnEmployeeSave.FlatStyle = FlatStyle.Flat;
-            btnEmployeeSave.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEmployeeSave.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnEmployeeSave.ForeColor = Color.White;
             btnEmployeeSave.Location = new Point(455, 491);
             btnEmployeeSave.Name = "btnEmployeeSave";
@@ -144,7 +146,7 @@
             button3.FlatAppearance.BorderSize = 2;
             button3.FlatAppearance.MouseOverBackColor = Color.Aqua;
             button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
             button3.Location = new Point(586, 491);
             button3.Name = "button3";
@@ -156,7 +158,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label7.Location = new Point(516, 43);
             label7.Name = "label7";
             label7.Size = new Size(148, 23);
@@ -166,7 +168,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(411, 323);
+            label5.Location = new Point(416, 312);
             label5.Name = "label5";
             label5.Size = new Size(99, 20);
             label5.TabIndex = 8;
@@ -175,7 +177,7 @@
             // birthDate
             // 
             birthDate.Format = DateTimePickerFormat.Short;
-            birthDate.Location = new Point(516, 323);
+            birthDate.Location = new Point(521, 312);
             birthDate.Name = "birthDate";
             birthDate.Size = new Size(215, 26);
             birthDate.TabIndex = 9;
@@ -184,7 +186,7 @@
             // 
             departmentComboBox.FormattingEnabled = true;
             departmentComboBox.Items.AddRange(new object[] { "STORE", "ADMIN", "SERVICE" });
-            departmentComboBox.Location = new Point(516, 279);
+            departmentComboBox.Location = new Point(521, 268);
             departmentComboBox.Name = "departmentComboBox";
             departmentComboBox.Size = new Size(215, 28);
             departmentComboBox.TabIndex = 26;
@@ -192,7 +194,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(413, 419);
+            label11.Location = new Point(418, 408);
             label11.Name = "label11";
             label11.Size = new Size(99, 20);
             label11.TabIndex = 24;
@@ -200,7 +202,7 @@
             // 
             // contactNo
             // 
-            contactNo.Location = new Point(516, 416);
+            contactNo.Location = new Point(521, 405);
             contactNo.Name = "contactNo";
             contactNo.Size = new Size(215, 26);
             contactNo.TabIndex = 40;
@@ -208,7 +210,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(383, 98);
+            label8.Location = new Point(388, 87);
             label8.Name = "label8";
             label8.Size = new Size(127, 20);
             label8.TabIndex = 41;
@@ -216,15 +218,33 @@
             // 
             // employeeCodeTextBox
             // 
-            employeeCodeTextBox.Location = new Point(516, 98);
+            employeeCodeTextBox.Location = new Point(521, 87);
             employeeCodeTextBox.Name = "employeeCodeTextBox";
             employeeCodeTextBox.Size = new Size(215, 26);
             employeeCodeTextBox.TabIndex = 42;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(455, 444);
+            label9.Name = "label9";
+            label9.Size = new Size(68, 20);
+            label9.TabIndex = 43;
+            label9.Text = "Position:";
+            // 
+            // positionBox
+            // 
+            positionBox.Location = new Point(521, 441);
+            positionBox.Name = "positionBox";
+            positionBox.Size = new Size(215, 26);
+            positionBox.TabIndex = 44;
             // 
             // UC_AddEmployee
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(positionBox);
+            Controls.Add(label9);
             Controls.Add(employeeCodeTextBox);
             Controls.Add(label8);
             Controls.Add(contactNo);
@@ -244,7 +264,7 @@
             Controls.Add(label2);
             Controls.Add(firstNameTextBox);
             Controls.Add(label1);
-            Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "UC_AddEmployee";
             Size = new Size(1152, 552);
@@ -273,5 +293,7 @@
         private TextBox contactNo;
         private Label label8;
         private TextBox employeeCodeTextBox;
+        private Label label9;
+        private TextBox positionBox;
     }
 }

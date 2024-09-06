@@ -58,14 +58,16 @@ namespace Central_Juan_Payroll_System
             string contactNumber = contactNo.Text;
             DateTime dateOfBirth = birthDate.Value;
             int departmentId = Convert.ToInt32(departmentComboBox.SelectedValue);
+            string positionTitle = positionBox.Text;
+
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO employees (employee_id, first_name, middle_name, last_name, email, contact_number, date_of_birth, department_id) " +
-                                   "VALUES (@EmployeeCode, @FirstName, @MiddleName, @LastName, @Email, @ContactNumber, @DateOfBirth, @DepartmentId)";
+                    string query = "INSERT INTO employees (employee_id, first_name, middle_name, last_name, email, contact_number, date_of_birth, department_id, position_title) " +
+                                   "VALUES (@EmployeeCode, @FirstName, @MiddleName, @LastName, @Email, @ContactNumber, @DateOfBirth, @DepartmentId, @PositionTitle)";
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@EmployeeCode", employeeCode);
                     command.Parameters.AddWithValue("@FirstName", firstName);
@@ -75,6 +77,7 @@ namespace Central_Juan_Payroll_System
                     command.Parameters.AddWithValue("@ContactNumber", contactNumber);
                     command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
                     command.Parameters.AddWithValue("@DepartmentId", departmentId);
+                    command.Parameters.AddWithValue("@PositionTitle", positionTitle);
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
@@ -102,6 +105,7 @@ namespace Central_Juan_Payroll_System
             middleNameTextBox.Text = string.Empty;
             emailTxt.Text = string.Empty;
             contactNo.Text = string.Empty;
+            positionBox.Text = string.Empty;
             birthDate.Value = DateTime.Today;
             departmentComboBox.SelectedIndex = -1;
         }
