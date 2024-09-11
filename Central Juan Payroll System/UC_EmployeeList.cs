@@ -32,7 +32,7 @@ namespace Central_Juan_Payroll_System
             dgvEmployeeList.Columns["first_name"].HeaderText = "First Name";
             dgvEmployeeList.Columns["middle_name"].HeaderText = "Middle Name";
             dgvEmployeeList.Columns["last_name"].HeaderText = "Last Name";
-            dgvEmployeeList.Columns["email"].HeaderText = "Department ID";
+            dgvEmployeeList.Columns["email"].HeaderText = "Email";
             dgvEmployeeList.Columns["contact_number"].HeaderText = "Contact #";
             dgvEmployeeList.Columns["date_of_birth"].HeaderText = "DOB";
             dgvEmployeeList.Columns["department_id"].HeaderText = "Department ID";

@@ -62,7 +62,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(198, 749);
+            panel1.Size = new Size(198, 781);
             panel1.TabIndex = 0;
             // 
             // btnAttendance
@@ -152,7 +152,7 @@
             panel2.BackColor = Color.MediumTurquoise;
             panel2.Controls.Add(addEmployee);
             panel2.Controls.Add(button5);
-            panel2.Location = new Point(204, 68);
+            panel2.Location = new Point(236, 124);
             panel2.Name = "panel2";
             panel2.Size = new Size(1159, 111);
             panel2.TabIndex = 1;
@@ -258,7 +258,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1284, 749);
+            ClientSize = new Size(1284, 781);
             Controls.Add(panel3);
             Controls.Add(label3);
             Controls.Add(panel2);

@@ -63,7 +63,6 @@
             btnBonusClear.TabIndex = 73;
             btnBonusClear.Text = "Clear";
             btnBonusClear.UseVisualStyleBackColor = false;
-            btnBonusClear.Click += btnBonusClear_Click;
             // 
             // btnDTRSave
             // 

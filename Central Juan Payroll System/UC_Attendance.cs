@@ -27,10 +27,11 @@ namespace Central_Juan_Payroll_System
 
         private void btAttSumm_Click(object sender, EventArgs e)
         {
-            using(SumAtt sum = new Central_Juan_Payroll_System.SumAtt())
+            using (SumAtt sum = new Central_Juan_Payroll_System.SumAtt())
             {
-                sum.ShowDialog();
+               sum.ShowDialog(); // Show the form modally
             }
         }
+
     }
 }

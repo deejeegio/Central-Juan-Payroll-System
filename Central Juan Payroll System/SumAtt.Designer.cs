@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             dgvAttSumm = new DataGridView();
-            btnBonusClear = new Button();
-            dtpBonus = new DateTimePicker();
+            btnAttClear = new Button();
+            dtpAttendance = new DateTimePicker();
             label1 = new Label();
             panel4 = new Panel();
             panel3 = new Panel();
@@ -49,32 +49,33 @@
             dgvAttSumm.Size = new Size(609, 279);
             dgvAttSumm.TabIndex = 84;
             // 
-            // btnBonusClear
+            // btnAttClear
             // 
-            btnBonusClear.BackColor = Color.MediumTurquoise;
-            btnBonusClear.FlatAppearance.BorderSize = 2;
-            btnBonusClear.FlatAppearance.MouseOverBackColor = Color.Aqua;
-            btnBonusClear.FlatStyle = FlatStyle.Flat;
-            btnBonusClear.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBonusClear.ForeColor = Color.White;
-            btnBonusClear.Location = new Point(304, 403);
-            btnBonusClear.Name = "btnBonusClear";
-            btnBonusClear.Size = new Size(97, 31);
-            btnBonusClear.TabIndex = 83;
-            btnBonusClear.Text = "Close";
-            btnBonusClear.UseVisualStyleBackColor = false;
+            btnAttClear.BackColor = Color.MediumTurquoise;
+            btnAttClear.FlatAppearance.BorderSize = 2;
+            btnAttClear.FlatAppearance.MouseOverBackColor = Color.Aqua;
+            btnAttClear.FlatStyle = FlatStyle.Flat;
+            btnAttClear.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAttClear.ForeColor = Color.White;
+            btnAttClear.Location = new Point(304, 403);
+            btnAttClear.Name = "btnAttClear";
+            btnAttClear.Size = new Size(97, 31);
+            btnAttClear.TabIndex = 83;
+            btnAttClear.Text = "Close";
+            btnAttClear.UseVisualStyleBackColor = false;
+            btnAttClear.Click += btnAttClear_Click;
             // 
-            // dtpBonus
+            // dtpAttendance
             // 
-            dtpBonus.Location = new Point(41, 80);
-            dtpBonus.Name = "dtpBonus";
-            dtpBonus.Size = new Size(218, 23);
-            dtpBonus.TabIndex = 81;
+            dtpAttendance.Location = new Point(75, 80);
+            dtpAttendance.Name = "dtpAttendance";
+            dtpAttendance.Size = new Size(218, 23);
+            dtpAttendance.TabIndex = 81;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(0, 192, 192);
             label1.Location = new Point(244, 40);
             label1.Name = "label1";
@@ -118,20 +119,20 @@
             panel1.Size = new Size(688, 22);
             panel1.TabIndex = 75;
             // 
-            // add_SumAtt
+            // SumAtt
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(688, 462);
             Controls.Add(dgvAttSumm);
-            Controls.Add(btnBonusClear);
-            Controls.Add(dtpBonus);
+            Controls.Add(btnAttClear);
+            Controls.Add(dtpAttendance);
             Controls.Add(label1);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "add_SumAtt";
+            Name = "SumAtt";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Attendance Summary";
             ((System.ComponentModel.ISupportInitialize)dgvAttSumm).EndInit();
@@ -142,8 +143,8 @@
         #endregion
 
         private DataGridView dgvAttSumm;
-        private Button btnBonusClear;
-        private DateTimePicker dtpBonus;
+        private Button btnAttClear;
+        private DateTimePicker dtpAttendance;
         private Label label1;
         private Panel panel4;
         private Panel panel3;
