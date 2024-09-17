@@ -49,7 +49,7 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(textBox1);
             groupBox1.Controls.Add(label1);
-            groupBox1.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox1.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.Location = new Point(699, 290);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(453, 330);
@@ -60,7 +60,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.MediumTurquoise;
             label4.Location = new Point(208, 72);
             label4.Name = "label4";
@@ -73,7 +73,7 @@
             btnLogin.BackColor = Color.MediumTurquoise;
             btnLogin.FlatAppearance.BorderSize = 2;
             btnLogin.FlatAppearance.MouseOverBackColor = Color.Aqua;
-            btnLogin.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogin.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(152, 206);
             btnLogin.Name = "btnLogin";
@@ -93,7 +93,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(71, 162);
             label2.Name = "label2";
             label2.Size = new Size(79, 20);
@@ -110,7 +110,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(71, 121);
             label1.Name = "label1";
             label1.Size = new Size(75, 20);
@@ -120,7 +120,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.MediumTurquoise;
             label3.Location = new Point(728, 194);
             label3.Name = "label3";
@@ -143,7 +143,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1366, 768);
+            ClientSize = new Size(1300, 768);
             Controls.Add(pictureBox1);
             Controls.Add(label3);
             Controls.Add(groupBox1);

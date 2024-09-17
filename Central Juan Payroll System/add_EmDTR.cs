@@ -92,47 +92,82 @@ namespace Central_Juan_Payroll_System
             DateTime dateDTR = dtpDTR.Value.Date;
             string employeeId = GetEmployeeIdByName(employeeName);
 
-            // Get morning and afternoon time in/out values
-            string timeInMorning12Hour = dateTimePickerTimeInMorning.Value.ToString("h:mm tt");
-            string timeOutMorning12Hour = dateTimePickerTimeOutMorning.Value.ToString("h:mm tt");
-            string timeInAfternoon12Hour = dateTimePickerTimeInAfternoon.Value.ToString("h:mm tt");
-            string timeOutAfternoon12Hour = dateTimePickerTimeOutAfternoon.Value.ToString("h:mm tt");
+            // Time inputs for morning and afternoon
+            TimeSpan timeInMorning = dateTimePickerTimeInMorning.Value.TimeOfDay;
+            TimeSpan timeOutMorning = dateTimePickerTimeOutMorning.Value.TimeOfDay;
+            TimeSpan timeInAfternoon = dateTimePickerTimeInAfternoon.Value.TimeOfDay;
+            TimeSpan timeOutAfternoon = dateTimePickerTimeOutAfternoon.Value.TimeOfDay;
 
-            // Convert to 24-hour format
-            string timeInMorning24Hour = ConvertTo24HourFormat(timeInMorning12Hour);
-            string timeOutMorning24Hour = ConvertTo24HourFormat(timeOutMorning12Hour);
-            string timeInAfternoon24Hour = ConvertTo24HourFormat(timeInAfternoon12Hour);
-            string timeOutAfternoon24Hour = ConvertTo24HourFormat(timeOutAfternoon12Hour);
+            // Define work hours
+            TimeSpan startMorning = new TimeSpan(9, 0, 0); // 9:00 AM
+            TimeSpan endMorning = new TimeSpan(12, 0, 0); // 12:00 PM
+            TimeSpan startAfternoon = new TimeSpan(13, 0, 0); // 1:00 PM
+            TimeSpan endAfternoon = new TimeSpan(18, 0, 0); // 6:00 PM
+            int totalWorkMinutes = 480; // Total 8 work hours = 480 minutes
 
-            // Deduction logic for both shifts
-            double morningDeduction = CalculateDeductionForShift(timeInMorning24Hour, "morning");
-            double afternoonDeduction = CalculateDeductionForShift(timeInAfternoon24Hour, "afternoon");
+            // Calculate late minutes for morning
+            int lateMorningMinutes = 0;
+            if (timeInMorning > startMorning)
+            {
+                lateMorningMinutes = (int)(timeInMorning - startMorning).TotalMinutes;
+                if (lateMorningMinutes <= 30)
+                {
+                    lateMorningMinutes = 60; // First 30 minutes late counts as 60 minutes
+                }
+                else
+                {
+                    lateMorningMinutes = 60 + (lateMorningMinutes - 30); // Additional minutes after the first 30
+                }
+            }
 
-            double totalDeduction = morningDeduction + afternoonDeduction; // Total deduction for the day
-            double daysCredited = 1 - totalDeduction; // Credited days
+            // Calculate late minutes for afternoon
+            int lateAfternoonMinutes = 0;
+            if (timeInAfternoon > startAfternoon)
+            {
+                lateAfternoonMinutes = (int)(timeInAfternoon - startAfternoon).TotalMinutes;
+            }
 
-            // Insert into MySQL database
+            // Total late minutes in the day
+            int totalLateMinutes = lateMorningMinutes + lateAfternoonMinutes;
+
+            // Deducted days and credited days calculation
+            double deductedDays = (double)totalLateMinutes / totalWorkMinutes;
+            double creditedDays = 1.0 - deductedDays;
+
+            // Calculate overtime if applicable (only count if more than 30 minutes)
+            TimeSpan overtime = timeOutAfternoon - endAfternoon;
+            if (overtime.TotalMinutes > 30)
+            {
+                creditedDays += overtime.TotalMinutes / totalWorkMinutes;
+            }
+
+            // Round the results to 2 decimal places
+            deductedDays = Math.Round(deductedDays, 2);
+            creditedDays = Math.Round(creditedDays, 2);
+
+            // Insert the data into the MySQL database
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO attendance (employee_id, employee_name, attendance_date, time_in_morning, time_out_morning, time_in_afternoon, time_out_afternoon, deducted_days, days_credited) " +
-                                   "VALUES (@EmployeeId, @EmployeeName, @AttendanceDate, @TimeInMorning, @TimeOutMorning, @TimeInAfternoon, @TimeOutAfternoon, @DeductedDays, @DaysCredited)";
+                    string query = "INSERT INTO attendance (employee_id, employee_name, attendance_date, time_in_morning, time_out_morning, time_in_afternoon, time_out_afternoon, days_credited, deducted_days) " +
+                                   "VALUES (@EmployeeId, @EmployeeName, @AttendanceDate, @TimeInMorning, @TimeOutMorning, @TimeInAfternoon, @TimeOutAfternoon, @DaysCredited, @DaysDeducted)";
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@EmployeeId", employeeId);
                     command.Parameters.AddWithValue("@EmployeeName", employeeName);
                     command.Parameters.AddWithValue("@AttendanceDate", dateDTR);
-                    command.Parameters.AddWithValue("@TimeInMorning", timeInMorning24Hour);
-                    command.Parameters.AddWithValue("@TimeOutMorning", timeOutMorning24Hour);
-                    command.Parameters.AddWithValue("@TimeInAfternoon", timeInAfternoon24Hour);
-                    command.Parameters.AddWithValue("@TimeOutAfternoon", timeOutAfternoon24Hour);
-                    command.Parameters.AddWithValue("@DeductedDays", totalDeduction);
-                    command.Parameters.AddWithValue("@DaysCredited", daysCredited);
+                    command.Parameters.AddWithValue("@TimeInMorning", timeInMorning.ToString(@"hh\:mm"));
+                    command.Parameters.AddWithValue("@TimeOutMorning", timeOutMorning.ToString(@"hh\:mm"));
+                    command.Parameters.AddWithValue("@TimeInAfternoon", timeInAfternoon.ToString(@"hh\:mm"));
+                    command.Parameters.AddWithValue("@TimeOutAfternoon", timeOutAfternoon.ToString(@"hh\:mm"));
+                    command.Parameters.AddWithValue("@DaysCredited", creditedDays);
+                    command.Parameters.AddWithValue("@DaysDeducted", deductedDays);
+
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("DTR saved successfully with deduction and credited days!");
+                        MessageBox.Show("DTR saved successfully!");
                     }
                     else
                     {
@@ -146,6 +181,8 @@ namespace Central_Juan_Payroll_System
             }
         }
 
+
+
         // Deduction calculation for morning and afternoon shifts
         private double CalculateDeductionForShift(string timeIn, string shift)
         {
@@ -154,71 +191,69 @@ namespace Central_Juan_Payroll_System
 
             TimeSpan actualTimeIn = TimeSpan.Parse(timeIn);
             int minutesLate = 0;
+            int totalShiftMinutes = shift == "morning" ? 180 : 300; // Morning: 180 minutes, Afternoon: 300 minutes
 
-            if (shift == "morning")
+            // Handle full absence for the morning
+            if (shift == "morning" && timeIn == "00:00")
             {
-                if (actualTimeIn > startMorning)
-                {
-                    minutesLate = (int)(actualTimeIn - startMorning).TotalMinutes;
-                }
+                return 0.375; // Full 3-hour deduction (3/8 = 0.375 days deduction)
             }
-            else if (shift == "afternoon")
+
+            // Late for morning or afternoon
+            if (shift == "morning" && actualTimeIn > startMorning)
             {
-                if (actualTimeIn > startAfternoon)
-                {
-                    minutesLate = (int)(actualTimeIn - startAfternoon).TotalMinutes;
-                }
+                minutesLate = (int)(actualTimeIn - startMorning).TotalMinutes;
+            }
+            else if (shift == "afternoon" && actualTimeIn > startAfternoon)
+            {
+                minutesLate = (int)(actualTimeIn - startAfternoon).TotalMinutes;
             }
 
             // Deduction for the shift based on minutes late
-            double deduction = CalculateLateDeduction(minutesLate, shift);
+            double deduction = CalculateLateDeduction(minutesLate, totalShiftMinutes, shift);
 
             return deduction;
         }
 
-        // Calculate deduction based on lateness
-        private double CalculateLateDeduction(int minutesLate, string shift)
+        // Calculate deduction based on lateness, adjusted for morning and afternoon shifts
+        private double CalculateLateDeduction(int minutesLate, int totalShiftMinutes, string shift)
         {
             double deduction = 0;
 
-            if (shift == "morning")
+            if (minutesLate > 0)
             {
-                if (minutesLate >= 6 && minutesLate <= 10)
+                deduction = (double)minutesLate / totalShiftMinutes; // Deduction proportional to shift minutes
+                if (shift == "morning")
                 {
-                    deduction = 15.0 / 480.0; // Deduct 15 mins
+                    deduction *= 0.375; // Morning is 3 hours out of 8 (3/8 = 0.375)
                 }
-                else if (minutesLate >= 11 && minutesLate <= 15)
+                else
                 {
-                    deduction = 30.0 / 480.0; // Deduct 30 mins
-                }
-                else if (minutesLate >= 16 && minutesLate <= 20)
-                {
-                    deduction = 45.0 / 480.0; // Deduct 45 mins
-                }
-                else if (minutesLate >= 21 && minutesLate <= 30)
-                {
-                    deduction = 60.0 / 480.0; // Deduct 1 hour
-                }
-                else if (minutesLate > 30)
-                {
-                    // For minutes late over 30, deduct proportional to minutes late
-                    deduction = minutesLate / 480.0;
-                }
-                else if (minutesLate > 0 && minutesLate <= 5)
-                {
-                    deduction = 0; // No deduction for up to 5 mins late
-                }
-            }
-            else if (shift == "afternoon")
-            {
-                // Implement deduction logic for afternoon shift if needed
-                if (minutesLate > 0)
-                {
-                    deduction = minutesLate / 480.0; // Deduct proportional to minutes late
+                    deduction *= 0.625; // Afternoon is 5 hours out of 8 (5/8 = 0.625)
                 }
             }
 
             return deduction;
+        }
+
+        // Calculate overtime hours (only count overtime if it's more than 30 minutes past 6:00 PM)
+        private double CalculateOvertime(string timeOutAfternoon24Hour)
+        {
+            TimeSpan endOfDay = TimeSpan.Parse("18:00");
+            TimeSpan actualTimeOut = TimeSpan.Parse(timeOutAfternoon24Hour);
+
+            if (actualTimeOut > endOfDay)
+            {
+                int overtimeMinutes = (int)(actualTimeOut - endOfDay).TotalMinutes;
+
+                // Only count overtime if it's over 30 minutes
+                if (overtimeMinutes > 30)
+                {
+                    return (overtimeMinutes - 30) / 60.0; // Convert minutes to hours, subtracting the 30-minute threshold
+                }
+            }
+
+            return 0; // No overtime if less than 30 minutes past 6:00 PM
         }
 
         private string ConvertTo24HourFormat(string time12Hour)

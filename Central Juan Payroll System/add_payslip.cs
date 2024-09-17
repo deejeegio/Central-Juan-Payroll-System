@@ -11,19 +11,18 @@ using System.Data.SQLite;
 
 namespace Central_Juan_Payroll_System
 {
-    public partial class add_bonus : Form
+    public partial class add_payslip : Form
     {
         SQLiteConnection sqlite_conn;
 
-        public add_bonus()
+        public add_payslip()
         {
             InitializeComponent();
-            // Initialize SQLite connection
-            sqlite_conn = new SQLiteConnection("Data Source=C:\\sqlite\\cj.db");
-            sqlite_conn.Open();
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
 
-            
+        }
     }
 }

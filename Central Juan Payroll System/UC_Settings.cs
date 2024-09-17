@@ -20,7 +20,7 @@ namespace Central_Juan_Payroll_System
 
         private void button4_Click(object sender, EventArgs e)
         {
-            using (add_bonus abn = new Central_Juan_Payroll_System.add_bonus())
+            using (add_payslip abn = new Central_Juan_Payroll_System.add_payslip())
             {
                 abn.ShowDialog();
             }
