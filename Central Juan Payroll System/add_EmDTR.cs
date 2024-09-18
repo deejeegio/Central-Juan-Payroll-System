@@ -105,30 +105,52 @@ namespace Central_Juan_Payroll_System
             TimeSpan endAfternoon = new TimeSpan(18, 0, 0); // 6:00 PM
             int totalWorkMinutes = 480; // Total 8 work hours = 480 minutes
 
-            // Calculate late minutes for morning
+            // Late deduction logic for morning
             int lateMorningMinutes = 0;
             if (timeInMorning > startMorning)
             {
-                lateMorningMinutes = (int)(timeInMorning - startMorning).TotalMinutes;
-                if (lateMorningMinutes <= 30)
+                if (timeInMorning >= new TimeSpan(9, 6, 0) && timeInMorning <= new TimeSpan(9, 10, 0))
                 {
-                    lateMorningMinutes = 60; // First 30 minutes late counts as 60 minutes
+                    lateMorningMinutes = 15;
+                }
+                else if (timeInMorning >= new TimeSpan(9, 11, 0) && timeInMorning <= new TimeSpan(9, 15, 0))
+                {
+                    lateMorningMinutes = 30;
+                }
+                else if (timeInMorning >= new TimeSpan(9, 16, 0) && timeInMorning <= new TimeSpan(9, 20, 0))
+                {
+                    lateMorningMinutes = 45;
+                }
+                else if (timeInMorning >= new TimeSpan(9, 21, 0) && timeInMorning <= new TimeSpan(9, 30, 0))
+                {
+                    lateMorningMinutes = 60; // 1 hour
+                }
+                else if (timeInMorning >= new TimeSpan(9, 31, 0) && timeInMorning <= new TimeSpan(9, 59, 59))
+                {
+                    lateMorningMinutes = 80; // 50 minutes late with compounded late penalty
                 }
                 else
                 {
-                    lateMorningMinutes = 60 + (lateMorningMinutes - 30); // Additional minutes after the first 30
+                    lateMorningMinutes = (int)(timeInMorning - startMorning).TotalMinutes;
                 }
             }
 
-            // Calculate late minutes for afternoon
+            // Late deduction logic for afternoon (use actual late minutes)
             int lateAfternoonMinutes = 0;
             if (timeInAfternoon > startAfternoon)
             {
                 lateAfternoonMinutes = (int)(timeInAfternoon - startAfternoon).TotalMinutes;
             }
 
-            // Total late minutes in the day
-            int totalLateMinutes = lateMorningMinutes + lateAfternoonMinutes;
+            // Early out deduction logic for afternoon
+            int earlyOutMinutes = 0;
+            if (timeOutAfternoon < endAfternoon)
+            {
+                earlyOutMinutes = (int)(endAfternoon - timeOutAfternoon).TotalMinutes;
+            }
+
+            // Total late and early out minutes in the day
+            int totalLateMinutes = lateMorningMinutes + lateAfternoonMinutes + earlyOutMinutes;
 
             // Deducted days and credited days calculation
             double deductedDays = (double)totalLateMinutes / totalWorkMinutes;
