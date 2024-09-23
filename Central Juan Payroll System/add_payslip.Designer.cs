@@ -32,15 +32,15 @@
             panel3 = new Panel();
             panel2 = new Panel();
             panel1 = new Panel();
-            comboBox1 = new ComboBox();
+            comboEmployee = new ComboBox();
             label2 = new Label();
             label1 = new Label();
-            btnClear = new Button();
+            btnClose = new Button();
             btnPaySave = new Button();
-            dtpPayslip = new DateTimePicker();
+            dtpFromPayslip = new DateTimePicker();
             label3 = new Label();
             label4 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtpUntilPayslip = new DateTimePicker();
             SuspendLayout();
             // 
             // panel4
@@ -79,13 +79,13 @@
             panel1.Size = new Size(688, 22);
             panel1.TabIndex = 40;
             // 
-            // comboBox1
+            // comboEmployee
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(290, 101);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(218, 23);
-            comboBox1.TabIndex = 111;
+            comboEmployee.FormattingEnabled = true;
+            comboEmployee.Location = new Point(290, 101);
+            comboEmployee.Name = "comboEmployee";
+            comboEmployee.Size = new Size(218, 23);
+            comboEmployee.TabIndex = 111;
             // 
             // label2
             // 
@@ -108,20 +108,20 @@
             label1.TabIndex = 112;
             label1.Text = "Issue Payslip";
             // 
-            // btnClear
+            // btnClose
             // 
-            btnClear.BackColor = Color.MediumTurquoise;
-            btnClear.FlatAppearance.BorderSize = 2;
-            btnClear.FlatAppearance.MouseOverBackColor = Color.Aqua;
-            btnClear.FlatStyle = FlatStyle.Flat;
-            btnClear.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(427, 218);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(97, 31);
-            btnClear.TabIndex = 114;
-            btnClear.Text = "Close";
-            btnClear.UseVisualStyleBackColor = false;
+            btnClose.BackColor = Color.MediumTurquoise;
+            btnClose.FlatAppearance.BorderSize = 2;
+            btnClose.FlatAppearance.MouseOverBackColor = Color.Aqua;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnClose.ForeColor = Color.White;
+            btnClose.Location = new Point(427, 218);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(97, 31);
+            btnClose.TabIndex = 114;
+            btnClose.Text = "Close";
+            btnClose.UseVisualStyleBackColor = false;
             // 
             // btnPaySave
             // 
@@ -137,13 +137,14 @@
             btnPaySave.TabIndex = 113;
             btnPaySave.Text = "Save";
             btnPaySave.UseVisualStyleBackColor = false;
+            btnPaySave.Click += btnPaySave_Click;
             // 
-            // dtpPayslip
+            // dtpFromPayslip
             // 
-            dtpPayslip.Location = new Point(183, 145);
-            dtpPayslip.Name = "dtpPayslip";
-            dtpPayslip.Size = new Size(162, 23);
-            dtpPayslip.TabIndex = 116;
+            dtpFromPayslip.Location = new Point(183, 145);
+            dtpFromPayslip.Name = "dtpFromPayslip";
+            dtpFromPayslip.Size = new Size(162, 23);
+            dtpFromPayslip.TabIndex = 116;
             // 
             // label3
             // 
@@ -165,26 +166,26 @@
             label4.TabIndex = 117;
             label4.Text = "until";
             // 
-            // dateTimePicker1
+            // dtpUntilPayslip
             // 
-            dateTimePicker1.Location = new Point(395, 146);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(162, 23);
-            dateTimePicker1.TabIndex = 118;
+            dtpUntilPayslip.Location = new Point(395, 146);
+            dtpUntilPayslip.Name = "dtpUntilPayslip";
+            dtpUntilPayslip.Size = new Size(162, 23);
+            dtpUntilPayslip.TabIndex = 118;
             // 
             // add_payslip
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(688, 303);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtpUntilPayslip);
             Controls.Add(label4);
-            Controls.Add(dtpPayslip);
+            Controls.Add(dtpFromPayslip);
             Controls.Add(label3);
-            Controls.Add(btnClear);
+            Controls.Add(btnClose);
             Controls.Add(btnPaySave);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
+            Controls.Add(comboEmployee);
             Controls.Add(label2);
             Controls.Add(panel4);
             Controls.Add(panel3);
@@ -202,14 +203,14 @@
         private Panel panel3;
         private Panel panel2;
         private Panel panel1;
-        private ComboBox comboBox1;
+        private ComboBox comboEmployee;
         private Label label2;
         private Label label1;
-        private Button btnClear;
+        private Button btnClose;
         private Button btnPaySave;
-        private DateTimePicker dtpPayslip;
+        private DateTimePicker dtpFromPayslip;
         private Label label3;
         private Label label4;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpUntilPayslip;
     }
 }

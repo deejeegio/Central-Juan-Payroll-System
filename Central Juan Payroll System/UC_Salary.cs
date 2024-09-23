@@ -27,9 +27,9 @@ namespace Central_Juan_Payroll_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (issue_salary iss = new Central_Juan_Payroll_System.issue_salary())
+            using (add_payslip aps = new Central_Juan_Payroll_System.add_payslip())
             {
-                iss.ShowDialog();
+                aps.ShowDialog();
             }
         }
 
