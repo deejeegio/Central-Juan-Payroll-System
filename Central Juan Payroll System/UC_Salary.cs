@@ -41,5 +41,12 @@ namespace Central_Juan_Payroll_System
                 ias.ShowDialog();
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (add_13th thirteenth = new Central_Juan_Payroll_System.add_13th()) 
+            {
+                thirteenth.ShowDialog();            }
+        }
     }
 }

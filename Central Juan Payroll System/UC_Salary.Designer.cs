@@ -54,7 +54,7 @@
             button4.FlatAppearance.BorderSize = 2;
             button4.FlatAppearance.MouseOverBackColor = Color.Aqua;
             button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button4.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             button4.ForeColor = Color.White;
             button4.Location = new Point(630, 26);
             button4.Name = "button4";
@@ -70,14 +70,15 @@
             button3.FlatAppearance.BorderSize = 2;
             button3.FlatAppearance.MouseOverBackColor = Color.Aqua;
             button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
             button3.Location = new Point(417, 26);
             button3.Name = "button3";
             button3.Size = new Size(207, 47);
             button3.TabIndex = 37;
-            button3.Text = "Cash Advance";
+            button3.Text = "13th Month";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button1
             // 
@@ -85,13 +86,13 @@
             button1.FlatAppearance.BorderSize = 2;
             button1.FlatAppearance.MouseOverBackColor = Color.Aqua;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = Color.White;
             button1.Location = new Point(223, 26);
             button1.Name = "button1";
             button1.Size = new Size(188, 47);
             button1.TabIndex = 36;
-            button1.Text = "Total Contribution";
+            button1.Text = "Add Payslip";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
@@ -101,7 +102,7 @@
             button2.FlatAppearance.BorderSize = 2;
             button2.FlatAppearance.MouseOverBackColor = Color.Aqua;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             button2.ForeColor = Color.White;
             button2.Location = new Point(29, 26);
             button2.Name = "button2";

@@ -195,7 +195,7 @@ namespace Central_Juan_Payroll_System
                     {
                         MessageBox.Show("Failed to save DTR.");
                     }
-                }
+                }   
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message);
